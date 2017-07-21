@@ -2,6 +2,7 @@ from sklearn import tree
 from sklearn import preprocessing
 from sklearn.metrics import accuracy_score
 from sklearn import svm
+from sklearn.naive_bayes import GaussianNB
 
 def prepareTrainAndTestData(path):
 
@@ -51,21 +52,32 @@ def prepareTrainAndTestData(path):
 
 def decissionTree(path):
     trainFeatureValues, trainClasses, testFeatureValues, testClasses=prepareTrainAndTestData(path);
-    clf = tree.DecisionTreeClassifier();
-    # print(clf)
+    clf = tree.DecisionTreeClassifier(class_weight="balanced",max_depth=15);
+    print(clf)
     clf.fit(trainFeatureValues,trainClasses);
     predictedClasses = clf.predict(testFeatureValues);
     print("Decission Tree Accuracy Score = " + str(accuracy_score(testClasses,predictedClasses)*100) + "%.");
 
 def svmC(path):
     trainFeatureValues, trainClasses, testFeatureValues, testClasses = prepareTrainAndTestData(path);
-    clf = svm.SVC();
-    # print(clf)
+    clf = svm.SVC(kernel="linear",cache_size=1000,class_weight='balanced');
+    print(clf)
     clf.fit(trainFeatureValues, trainClasses);
     predictedClasses = clf.predict(testFeatureValues);
     print("SVM Accuracy Score = " + str(accuracy_score(testClasses, predictedClasses) * 100) + "%.");
 
 
+def naiveByes(path):
+    trainFeatureValues, trainClasses, testFeatureValues, testClasses = prepareTrainAndTestData(path);
+    clf = clf = GaussianNB();
+    # print(clf);
+    clf.fit(trainFeatureValues, trainClasses);
+    predictedClasses = clf.predict(testFeatureValues);
+    print("Naive Byes Accuracy Score = " + str(accuracy_score(testClasses, predictedClasses) * 100) + "%.");
+
 path = "mushrooms.csv";
 decissionTree(path);
-svmC(path);
+# svmC(path);
+# naiveByes(path);
+
+
