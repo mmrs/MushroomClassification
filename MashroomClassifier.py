@@ -3,6 +3,8 @@ from sklearn import preprocessing
 from sklearn.metrics import accuracy_score
 from sklearn import svm
 from sklearn.naive_bayes import GaussianNB
+import pydotplus
+from IPython.display import Image
 
 def prepareTrainAndTestData(path):
 
@@ -56,7 +58,11 @@ def decissionTree(path):
     print(clf)
     clf.fit(trainFeatureValues,trainClasses);
     predictedClasses = clf.predict(testFeatureValues);
-    print("Decission Tree Accuracy Score = " + str(accuracy_score(testClasses,predictedClasses)*100) + "%.");
+    print("Decission Tree Accuracy Score = " + str(accuracy_score(testClasses,predictedClasses)*100) + "%");
+    dot_data = tree.export_graphviz(clf, out_file='tree.txt')
+    graph = pydotplus.graph_from_dot_data(dot_data)
+    Image(graph.create_png())
+    graph.write_pdf("iris.pdf")
 
 def svmC(path):
     trainFeatureValues, trainClasses, testFeatureValues, testClasses = prepareTrainAndTestData(path);
@@ -64,7 +70,7 @@ def svmC(path):
     print(clf)
     clf.fit(trainFeatureValues, trainClasses);
     predictedClasses = clf.predict(testFeatureValues);
-    print("SVM Accuracy Score = " + str(accuracy_score(testClasses, predictedClasses) * 100) + "%.");
+    print("SVM Accuracy Score = " + str(accuracy_score(testClasses, predictedClasses) * 100) + "%");
 
 
 def naiveByes(path):
@@ -73,7 +79,7 @@ def naiveByes(path):
     # print(clf);
     clf.fit(trainFeatureValues, trainClasses);
     predictedClasses = clf.predict(testFeatureValues);
-    print("Naive Byes Accuracy Score = " + str(accuracy_score(testClasses, predictedClasses) * 100) + "%.");
+    print("Naive Byes Accuracy Score = " + str(accuracy_score(testClasses, predictedClasses) * 100) + "%");
 
 path = "mushrooms.csv";
 decissionTree(path);

@@ -1,12 +1,12 @@
 Naive Byes:
-Naive Byes Accuracy Score = 91.0992616899%.
+Naive Byes Accuracy Score = 91.0992616899%
 
 SVM:
-SVM Accuracy Score = 41.2633305989%.  //rbf kernel
-SVM Accuracy Score = 71.9031993437%.  //linear kernel
-SVM Accuracy Score = 79.2452830189%.  //kernel="linear",cache_size=1000,class_weight='balanced'
+SVM Accuracy Score = 41.2633305989%  //rbf kernel
+SVM Accuracy Score = 71.9031993437%  //linear kernel
+SVM Accuracy Score = 79.2452830189%  //kernel="linear",cache_size=1000,class_weight='balanced'
 
 Decission Tree:
-Decission Tree Accuracy Score = 84.7415914684%.
+Decission Tree Accuracy Score = 84.7415914684%
 
 
