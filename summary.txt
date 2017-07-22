@@ -1,12 +1,60 @@
-Naive Byes:
-Naive Byes Accuracy Score = 91.0992616899%
+C:\ProgramData\Anaconda3\python.exe D:/MashroomClassification_ML-Project/MashroomClassifier.py
+GaussianNB(priors=None)
+-----------------------------------------------------------------
+Naive Byes accuracy score = 91.0992616899%
+Naive Byes precision score = 87.9089508823%
+Naive Byes recall score = 88.6030598701%
+Naive Byes f1 score = 88.2471909563%
+-----------------------------------------------------------------
+SVC(C=1.0, cache_size=1000, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma='auto', kernel='poly',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False)
+-----------------------------------------------------------------
+--------------------VALIDATION--------------------------
+SVM accuracy score = 97.619047619%
+SVM precision score = 97.834921736%
+SVM recall score = 95.7663799167%
+SVM f1 score = 96.7456049266%
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+--------------------TESTING--------------------------
+SVM accuracy score = 97.4569319114%
+SVM precision score = 97.5013919305%
+SVM recall score = 95.7074332819%
+SVM f1 score = 96.5617513605%
+-----------------------------------------------------------------
+DecisionTreeClassifier(class_weight='balanced', criterion='gini',
+            max_depth=15, max_features=None, max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=None, splitter='best')
+-----------------------------------------------------------------
+Decision tree accuracy score = 94.5857260049%
+Decision tree precision score = 94.1848998459%
+Decision tree recall score = 91.1464648276%
+Decision tree f1 score = 92.5342414907%
+-----------------------------------------------------------------
+MLPClassifier(activation='relu', alpha=0.0001, batch_size='auto', beta_1=0.9,
+       beta_2=0.999, early_stopping=False, epsilon=1e-08,
+       hidden_layer_sizes=(100, 100), learning_rate='constant',
+       learning_rate_init=0.001, max_iter=200, momentum=0.9,
+       nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,
+       solver='adam', tol=0.0001, validation_fraction=0.1, verbose=False,
+       warm_start=False)
+-----------------------------------------------------------------
+--------------------VALIDATION--------------------------
+Neural network accuracy score = 96.9622331691%
+Neural network precision score = 96.5953134708%
+Neural network recall score = 95.2444651931%
+Neural network f1 score = 95.8951910176%
+-----------------------------------------------------------------
+-----------------------------------------------------------------
+--------------------TESTING--------------------------
+Neural network accuracy score = 97.7850697293%
+Neural network precision score = 97.504648473%
+Neural network recall score = 96.5568389712%
+Neural network f1 score = 97.0188499117%
+-----------------------------------------------------------------
 
-SVM:
-SVM Accuracy Score = 41.2633305989%  //rbf kernel
-SVM Accuracy Score = 71.9031993437%  //linear kernel
-SVM Accuracy Score = 79.2452830189%  //kernel="linear",cache_size=1000,class_weight='balanced'
-
-Decission Tree:
-Decission Tree Accuracy Score = 84.7415914684%
-
-
+Process finished with exit code 0
