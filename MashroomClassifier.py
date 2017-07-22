@@ -54,14 +54,6 @@ def prepareTrainAndTestData(path):
         testFeatureValues.append(values);
     return trainFeatureValues,trainClasses,testFeatureValues,testClasses;
 
-def encodedArray(array):
-    array2 = []
-    for i in range(0,len(array)):
-        # print(array[i])
-        array2.append(encoder[array[i]])
-        # print(array[i])
-    return array2
-
 def decisionTree(path):
     trainFeatureValues, trainClasses, testFeatureValues, testClasses=prepareTrainAndTestData(path);
     clf = tree.DecisionTreeClassifier(class_weight="balanced",max_depth=15);
@@ -71,11 +63,11 @@ def decisionTree(path):
     print("-----------------------------------------------------------------")
     print("Decision tree accuracy score = " + str(accuracy_score(testClasses, predictedClasses) * 100) + "%");
     print("Decision tree precision score = " + str(
-        precision_score(encodedArray(testClasses), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        precision_score(testClasses, predictedClasses, average='macro') * 100) + "%");
     print("Decision tree recall score = " + str(
-        recall_score(encodedArray(testClasses), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        recall_score(testClasses, predictedClasses, average='macro') * 100) + "%");
     print("Decision tree f1 score = " + str(
-        f1_score(encodedArray(testClasses), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        f1_score(testClasses, predictedClasses, average='macro') * 100) + "%");
     print("-----------------------------------------------------------------")
     dot_data = tree.export_graphviz(clf, out_file='tree.txt')
     # graph = pydotplus.graph_from_dot_data(dot_data)
@@ -100,24 +92,24 @@ def svmC(path):
     predictedClasses = clf.predict(validationFeatureValues);
     print("-----------------------------------------------------------------")
     print("--------------------VALIDATION--------------------------")
-    print("SVM accuracy score = " + str(accuracy_score(validationClasses, predictedClasses) * 100) + "%");
+    print("SVM accuracy score = " + str(accuracy_score(validationClasses, predictedClasses) * 100) + "%")
     print("SVM precision score = " + str(
-        precision_score(encodedArray(validationClasses), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        precision_score(validationClasses, predictedClasses,average='macro') * 100) + "%")
     print("SVM recall score = " + str(
-        recall_score(encodedArray(validationClasses), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        recall_score(validationClasses, predictedClasses, average='macro')* 100) + "%")
     print("SVM f1 score = " + str(
-        f1_score(encodedArray(validationClasses), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        f1_score(validationClasses, predictedClasses, average='macro') * 100) + "%")
     print("-----------------------------------------------------------------")
     predictedClasses = clf.predict(testFeatureValues2);
     print("-----------------------------------------------------------------")
     print("--------------------TESTING--------------------------")
     print("SVM accuracy score = " + str(accuracy_score(testClasses2, predictedClasses) * 100) + "%");
     print("SVM precision score = " + str(
-        precision_score(encodedArray(testClasses2), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        precision_score(testClasses2, predictedClasses, average='macro') * 100) + "%");
     print("SVM recall score = " + str(
-        recall_score(encodedArray(testClasses2), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        recall_score(testClasses2, predictedClasses, average='macro') * 100) + "%");
     print("SVM f1 score = " + str(
-        f1_score(encodedArray(testClasses2), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        f1_score(testClasses2, predictedClasses, average='macro') * 100) + "%");
     print("-----------------------------------------------------------------")
 
 
@@ -129,9 +121,9 @@ def naiveByes(path):
     predictedClasses = clf.predict(testFeatureValues);
     print("-----------------------------------------------------------------")
     print("Naive Byes accuracy score = " + str(accuracy_score(testClasses, predictedClasses) * 100) + "%");
-    print("Naive Byes precision score = " + str(precision_score(encodedArray(testClasses), encodedArray(predictedClasses),average='macro') * 100) + "%");
-    print("Naive Byes recall score = " + str(recall_score(encodedArray(testClasses), encodedArray(predictedClasses),average='macro') * 100) + "%");
-    print("Naive Byes f1 score = " + str(f1_score(encodedArray(testClasses), encodedArray(predictedClasses),average='macro') * 100) + "%");
+    print("Naive Byes precision score = " + str(precision_score(testClasses,predictedClasses,average='macro') * 100) + "%");
+    print("Naive Byes recall score = " + str(recall_score(testClasses,predictedClasses,average='macro') * 100) + "%");
+    print("Naive Byes f1 score = " + str(f1_score(testClasses,predictedClasses,average='macro') * 100) + "%");
     print("-----------------------------------------------------------------")
 
 
@@ -158,20 +150,20 @@ def neuralNetwork(path):
     print("-----------------------------------------------------------------")
     print("--------------------VALIDATION--------------------------")
     print("Neural network accuracy score = " + str(accuracy_score(validationClasses, predictedClasses) * 100) + "%");
-    print("Neural network precision score = " + str(precision_score(encodedArray(validationClasses), encodedArray(predictedClasses),average='macro') * 100) + "%");
-    print("Neural network recall score = " + str(recall_score(encodedArray(validationClasses), encodedArray(predictedClasses),average='macro') * 100) + "%");
-    print("Neural network f1 score = " + str(f1_score(encodedArray(validationClasses), encodedArray(predictedClasses),average='macro') * 100) + "%");
+    print("Neural network precision score = " + str(precision_score(validationClasses, predictedClasses,average='macro') * 100) + "%");
+    print("Neural network recall score = " + str(recall_score(validationClasses, predictedClasses,average='macro') * 100) + "%");
+    print("Neural network f1 score = " + str(f1_score(validationClasses, predictedClasses,average='macro') * 100) + "%");
     print("-----------------------------------------------------------------")
     predictedClasses = clf.predict(testFeatureValues2);
     print("-----------------------------------------------------------------")
     print("--------------------TESTING--------------------------")
     print("Neural network accuracy score = " + str(accuracy_score(testClasses2, predictedClasses) * 100) + "%");
     print("Neural network precision score = " + str(
-        precision_score(encodedArray(testClasses2), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        precision_score(testClasses2, predictedClasses, average='macro') * 100) + "%");
     print("Neural network recall score = " + str(
-        recall_score(encodedArray(testClasses2), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        recall_score(testClasses2, predictedClasses, average='macro') * 100) + "%");
     print("Neural network f1 score = " + str(
-        f1_score(encodedArray(testClasses2), encodedArray(predictedClasses), average='macro') * 100) + "%");
+        f1_score(testClasses2, predictedClasses, average='macro') * 100) + "%");
     print("-----------------------------------------------------------------")
 
 path = "mushrooms.csv";

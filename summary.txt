@@ -12,17 +12,17 @@ SVC(C=1.0, cache_size=1000, class_weight=None, coef0=0.0,
   tol=0.001, verbose=False)
 -----------------------------------------------------------------
 --------------------VALIDATION--------------------------
-SVM accuracy score = 97.619047619%
-SVM precision score = 97.834921736%
-SVM recall score = 95.7663799167%
-SVM f1 score = 96.7456049266%
+SVM accuracy score = 97.7832512315%
+SVM precision score = 98.0760967369%
+SVM recall score = 96.1163406798%
+SVM f1 score = 97.0443349754%
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 --------------------TESTING--------------------------
-SVM accuracy score = 97.4569319114%
-SVM precision score = 97.5013919305%
-SVM recall score = 95.7074332819%
-SVM f1 score = 96.5617513605%
+SVM accuracy score = 97.2928630025%
+SVM precision score = 97.232777009%
+SVM recall score = 95.3298114315%
+SVM f1 score = 96.2357003495%
 -----------------------------------------------------------------
 DecisionTreeClassifier(class_weight='balanced', criterion='gini',
             max_depth=15, max_features=None, max_leaf_nodes=None,
@@ -30,10 +30,10 @@ DecisionTreeClassifier(class_weight='balanced', criterion='gini',
             min_samples_split=2, min_weight_fraction_leaf=0.0,
             presort=False, random_state=None, splitter='best')
 -----------------------------------------------------------------
-Decision tree accuracy score = 94.5857260049%
-Decision tree precision score = 94.1848998459%
-Decision tree recall score = 91.1464648276%
-Decision tree f1 score = 92.5342414907%
+Decision tree accuracy score = 96.0623461854%
+Decision tree precision score = 97.5051975052%
+Decision tree recall score = 92.131147541%
+Decision tree f1 score = 94.4502196693%
 -----------------------------------------------------------------
 MLPClassifier(activation='relu', alpha=0.0001, batch_size='auto', beta_1=0.9,
        beta_2=0.999, early_stopping=False, epsilon=1e-08,
@@ -44,17 +44,17 @@ MLPClassifier(activation='relu', alpha=0.0001, batch_size='auto', beta_1=0.9,
        warm_start=False)
 -----------------------------------------------------------------
 --------------------VALIDATION--------------------------
-Neural network accuracy score = 96.9622331691%
-Neural network precision score = 96.5953134708%
-Neural network recall score = 95.2444651931%
-Neural network f1 score = 95.8951910176%
+Neural network accuracy score = 96.7159277504%
+Neural network precision score = 96.5360677292%
+Neural network recall score = 94.6731408017%
+Neural network f1 score = 95.5573387803%
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 --------------------TESTING--------------------------
-Neural network accuracy score = 97.7850697293%
-Neural network precision score = 97.504648473%
-Neural network recall score = 96.5568389712%
-Neural network f1 score = 97.0188499117%
+Neural network accuracy score = 98.0311730927%
+Neural network precision score = 97.5668896321%
+Neural network recall score = 97.1439174485%
+Neural network f1 score = 97.353049747%
 -----------------------------------------------------------------
 
 Process finished with exit code 0

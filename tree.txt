@@ -9,7 +9,7 @@ node [shape=box] ;
 1 -> 3 ;
 4 [label="X[7] <= 8.0\ngini = 0.3628\nsamples = 4214\nvalue = [2818.505, 880.9488]"] ;
 0 -> 4 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
-5 [label="X[17] <= 17.5\ngini = 0.0425\nsamples = 3382\nvalue = [2638.3482, 58.5484]"] ;
+5 [label="X[19] <= 16.0\ngini = 0.0425\nsamples = 3382\nvalue = [2638.3482, 58.5484]"] ;
 4 -> 5 ;
 6 [label="gini = 0.0\nsamples = 3200\nvalue = [2528.5158, 0.0]"] ;
 5 -> 6 ;
