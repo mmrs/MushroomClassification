@@ -10,7 +10,8 @@ import pydotplus
 from IPython.display import Image
 from sklearn.neural_network import MLPClassifier
 import random
-
+from sklearn import preprocessing
+import numpy as np
 encoder = dict();
 for i in range(ord('a'), ord('z') + 1):
     encoder[chr(i)] = i - 96;
@@ -21,42 +22,71 @@ def prepareTrainAndTestData(path):
     fileIn = open(path, "r", encoding='utf-8');
     lines = fileIn.read().split('\n');
 
-    trainFeatureValues = [];
-    trainClasses = [];
-    testFeatureValues = [];
-    testClasses = [];
-    trainStart = 1;
-    trainEnd = int((len(lines)*0.7));
-    testStart = trainEnd;
-    testEnd = len(lines);
+    allEValues = []
+    allEClasses = []
+    allPValues = []
+    allPClasses = []
     # for i in range(1,27):
     #     print("dict " + str(encoder[chr(i+96)]));
+    for i in range(1,len(lines)):
+        data = lines[i].split(',')
+        if(data[0] == 'e'):
+            allEClasses.append(data[0])
+            lengthData = len(data)
+            values = []
+            for j in range(1, lengthData):
+                values.append(encoder[data[j]])
+            allEValues.append(values)
+        else:
+            allPClasses.append(data[0])
+            lengthData = len(data)
+            values = []
+            for j in range(1, lengthData):
+                values.append(encoder[data[j]])
+            allPValues.append(values)
 
 
-    for i in range(trainStart,trainEnd):
-        data = lines[i].split(',');
-        trainClasses.append(data[0]);
-        lengthData = len(data);
-        values = [];
-        # print(encoder.values());
-        for j in range(1,lengthData):
-            # print("data " + data[j]);
-            values.append(encoder[data[j]]);
-        trainFeatureValues.append(values);
+    elen = len(allEValues);
 
-    for i in range(testStart, testEnd):
-        data = lines[i].split(',');
-        testClasses.append(data[0]);
-        lengthData = len(data);
-        values = [];
-        for j in range(1, lengthData):
-            values.append(encoder[data[j]]);
-        testFeatureValues.append(values);
+    # features = allEValues;
+    # features+= allPValues;
+    # features_scaled = preprocessing.scale(np.array(features));
+    # allEValues = list(features_scaled[:elen-1]);
+    # allPValues = list(features_scaled[elen:]);
+    #print(allEValues);
+
+
+
+    #print(len(allPValues),len(allEValues))
+    #print(allEValues);
+    trainClasses = allEClasses[:int(len(allEClasses)*0.7)]
+    trainFeatureValues = allEValues[:int(len(allEValues)*0.7)]
+    #
+    trainClasses += allPClasses[:int(len(allPClasses)*0.7)]
+    trainFeatureValues += allPValues[:int(len(allPValues) * 0.7)]
+    #print(trainFeatureValues);
+    testClasses = allEClasses[int(len(allEClasses) * 0.7)+1:]
+    testFeatureValues = allEValues[int(len(allEValues) * 0.7)+1:]
+    testClasses += allPClasses[int(len(allPClasses) * 0.7)+1:]
+    testFeatureValues += allPValues[int(len(allPValues) * 0.7)+1:]
+
+    zipped = list(zip(trainClasses, trainFeatureValues))
+    random.shuffle(zipped)
+    trainClasses, trainFeatureValues = zip(*zipped)
+    trainFeatureValues = list(trainFeatureValues);
+    trainClasses = list(trainClasses);
+    #print(trainFeatureValues);
+    zipped = list(zip(testClasses, testFeatureValues))
+    random.shuffle(zipped)
+    testClasses, testFeatureValues = zip(*zipped)
+    testFeatureValues = list(testFeatureValues);
+    testClasses = list(testClasses);
+
     return trainFeatureValues,trainClasses,testFeatureValues,testClasses;
 
 def decisionTree(path):
     trainFeatureValues, trainClasses, testFeatureValues, testClasses=prepareTrainAndTestData(path);
-    clf = tree.DecisionTreeClassifier(class_weight="balanced",max_depth=15);
+    clf = tree.DecisionTreeClassifier(class_weight="balanced",max_depth=20,max_features = "log2",min_samples_split=5,random_state =251254);
     print(clf)
     clf.fit(trainFeatureValues,trainClasses);
     predictedClasses = clf.predict(testFeatureValues);
@@ -76,20 +106,23 @@ def decisionTree(path):
 
 def svmC(path):
     trainFeatureValues, trainClasses, testFeatureValues, testClasses = prepareTrainAndTestData(path);
-
-    zipped = list(zip(testClasses, testFeatureValues))
-    random.shuffle(zipped)
-    testClasses, testFeatureValues = zip(*zipped)
-
+    #print(trainFeatureValues);
     testClasses2 = testClasses[:int(len(testClasses) * .5)]
     validationClasses = testClasses[int(len(testClasses) * .5) + 1:]
     testFeatureValues2 = testFeatureValues[:int(len(testClasses) * .5)]
     validationFeatureValues = testFeatureValues[int(len(testClasses) * .5) + 1:]
 
-    clf = svm.SVC(kernel="poly",cache_size=1000);
+    from sklearn.preprocessing import StandardScaler;
+    scaler = StandardScaler()
+    scaler.fit(np.array(trainFeatureValues))
+    trainFeatureValues_scale = scaler.transform(trainFeatureValues)
+    testFeatureValues2_scale = scaler.transform(testFeatureValues2);
+    validationFeatureValues_scale = scaler.transform(validationFeatureValues);
+    clf = svm.SVC(kernel="linear",C=25);
     print(clf)
-    clf.fit(trainFeatureValues, trainClasses);
-    predictedClasses = clf.predict(validationFeatureValues);
+    #print(trainFeatureValues);
+    clf.fit(trainFeatureValues_scale, trainClasses);
+    predictedClasses = clf.predict(validationFeatureValues_scale);
     print("-----------------------------------------------------------------")
     print("--------------------VALIDATION--------------------------")
     print("SVM accuracy score = " + str(accuracy_score(validationClasses, predictedClasses) * 100) + "%")
@@ -100,7 +133,7 @@ def svmC(path):
     print("SVM f1 score = " + str(
         f1_score(validationClasses, predictedClasses, average='macro') * 100) + "%")
     print("-----------------------------------------------------------------")
-    predictedClasses = clf.predict(testFeatureValues2);
+    predictedClasses = clf.predict(testFeatureValues2_scale);
     print("-----------------------------------------------------------------")
     print("--------------------TESTING--------------------------")
     print("SVM accuracy score = " + str(accuracy_score(testClasses2, predictedClasses) * 100) + "%");
@@ -110,7 +143,7 @@ def svmC(path):
         recall_score(testClasses2, predictedClasses, average='macro') * 100) + "%");
     print("SVM f1 score = " + str(
         f1_score(testClasses2, predictedClasses, average='macro') * 100) + "%");
-    print("-----------------------------------------------------------------")
+    print("-----------------------------------------------------------------");
 
 
 def naiveByes(path):
@@ -130,20 +163,11 @@ def naiveByes(path):
 def neuralNetwork(path):
     trainFeatureValues, trainClasses, testFeatureValues, testClasses = prepareTrainAndTestData(path);
 
-    zipped = list(zip(testClasses, testFeatureValues))
-    random.shuffle(zipped)
-    testClasses, testFeatureValues = zip(*zipped)
-
     testClasses2 = testClasses[:int(len(testClasses)*.5)]
     validationClasses = testClasses[int(len(testClasses)*.5)+1:]
     testFeatureValues2 = testFeatureValues[:int(len(testClasses) * .5)]
     validationFeatureValues = testFeatureValues[int(len(testClasses) * .5) + 1:]
-    clf = MLPClassifier(activation='relu', alpha=.0001,
-       epsilon=1e-08, hidden_layer_sizes=(100,100,), learning_rate='constant',
-       learning_rate_init=0.001, max_iter=200, momentum=0.9,
-       nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,
-       solver="adam",tol=0.0001, validation_fraction=0.1, verbose=False,
-       warm_start=False)
+    clf = MLPClassifier(activation='logistic', alpha=.0001, hidden_layer_sizes=(20,20,20,),random_state=False)
     print(clf);
     clf.fit(trainFeatureValues, trainClasses);
     predictedClasses = clf.predict(validationFeatureValues);

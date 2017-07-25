@@ -1,60 +1,61 @@
 C:\ProgramData\Anaconda3\python.exe D:/MashroomClassification_ML-Project/MashroomClassifier.py
 GaussianNB(priors=None)
 -----------------------------------------------------------------
-Naive Byes accuracy score = 91.0992616899%
-Naive Byes precision score = 87.9089508823%
-Naive Byes recall score = 88.6030598701%
-Naive Byes f1 score = 88.2471909563%
+Naive Byes accuracy score = 70.3612479475%
+Naive Byes precision score = 80.2912138374%
+Naive Byes recall score = 71.3708534356%
+Naive Byes f1 score = 68.3224511056%
 -----------------------------------------------------------------
-SVC(C=1.0, cache_size=1000, class_weight=None, coef0=0.0,
-  decision_function_shape=None, degree=3, gamma='auto', kernel='poly',
+
+SVC(C=25, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma='auto', kernel='linear',
   max_iter=-1, probability=False, random_state=None, shrinking=True,
   tol=0.001, verbose=False)
 -----------------------------------------------------------------
 --------------------VALIDATION--------------------------
-SVM accuracy score = 97.7832512315%
-SVM precision score = 98.0760967369%
-SVM recall score = 96.1163406798%
-SVM f1 score = 97.0443349754%
+SVM accuracy score = 87.1815940838%
+SVM precision score = 88.6643723096%
+SVM recall score = 87.5534797683%
+SVM f1 score = 87.1216931217%
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 --------------------TESTING--------------------------
-SVM accuracy score = 97.2928630025%
-SVM precision score = 97.232777009%
-SVM recall score = 95.3298114315%
-SVM f1 score = 96.2357003495%
+SVM accuracy score = 85.632183908%
+SVM precision score = 86.8188793497%
+SVM recall score = 85.9467120181%
+SVM f1 score = 85.5774988683%
 -----------------------------------------------------------------
 DecisionTreeClassifier(class_weight='balanced', criterion='gini',
-            max_depth=15, max_features=None, max_leaf_nodes=None,
+            max_depth=20, max_features='log2', max_leaf_nodes=None,
             min_impurity_split=1e-07, min_samples_leaf=1,
-            min_samples_split=2, min_weight_fraction_leaf=0.0,
-            presort=False, random_state=None, splitter='best')
+            min_samples_split=5, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=251254, splitter='best')
 -----------------------------------------------------------------
-Decision tree accuracy score = 96.0623461854%
-Decision tree precision score = 97.5051975052%
-Decision tree recall score = 92.131147541%
-Decision tree f1 score = 94.4502196693%
+Decision tree accuracy score = 93.9244663383%
+Decision tree precision score = 94.3422948258%
+Decision tree recall score = 94.1244124547%
+Decision tree f1 score = 93.921696627%
 -----------------------------------------------------------------
-MLPClassifier(activation='relu', alpha=0.0001, batch_size='auto', beta_1=0.9,
-       beta_2=0.999, early_stopping=False, epsilon=1e-08,
-       hidden_layer_sizes=(100, 100), learning_rate='constant',
+MLPClassifier(activation='logistic', alpha=0.0001, batch_size='auto',
+       beta_1=0.9, beta_2=0.999, early_stopping=False, epsilon=1e-08,
+       hidden_layer_sizes=(20, 20, 20), learning_rate='constant',
        learning_rate_init=0.001, max_iter=200, momentum=0.9,
-       nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,
-       solver='adam', tol=0.0001, validation_fraction=0.1, verbose=False,
-       warm_start=False)
+       nesterovs_momentum=True, power_t=0.5, random_state=False,
+       shuffle=True, solver='adam', tol=0.0001, validation_fraction=0.1,
+       verbose=False, warm_start=False)
 -----------------------------------------------------------------
 --------------------VALIDATION--------------------------
-Neural network accuracy score = 96.7159277504%
-Neural network precision score = 96.5360677292%
-Neural network recall score = 94.6731408017%
-Neural network f1 score = 95.5573387803%
+Neural network accuracy score = 94.4946589975%
+Neural network precision score = 94.8062015504%
+Neural network recall score = 94.7574334898%
+Neural network f1 score = 94.494525179%
 -----------------------------------------------------------------
 -----------------------------------------------------------------
 --------------------TESTING--------------------------
-Neural network accuracy score = 98.0311730927%
-Neural network precision score = 97.5668896321%
-Neural network recall score = 97.1439174485%
-Neural network f1 score = 97.353049747%
+Neural network accuracy score = 93.6781609195%
+Neural network precision score = 94.279346211%
+Neural network recall score = 93.8102893891%
+Neural network f1 score = 93.6670576391%
 -----------------------------------------------------------------
 
 Process finished with exit code 0
