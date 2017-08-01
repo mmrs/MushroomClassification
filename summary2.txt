@@ -1,0 +1,63 @@
+GaussianNB(priors=None)
+-----------------------------------------------------------------
+Naive Byes accuracy score = 89.2036124795%
+Naive Byes precision score = 89.402455468%
+Naive Byes recall score = 89.3483883509%
+Naive Byes f1 score = 89.2029556426%
+-----------------------------------------------------------------
+SVC(C=25, cache_size=200, class_weight=None, coef0=0.0,
+  decision_function_shape=None, degree=3, gamma='auto', kernel='linear',
+  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  tol=0.001, verbose=False)
+--------------------VALIDATION--------------------------
+SVM accuracy score = 97.5349219392%
+SVM precision score = 97.5919650192%
+SVM recall score = 97.5811637433%
+SVM f1 score = 97.5349069598%
+--------------------TESTING--------------------------
+SVM accuracy score = 96.3054187192%
+SVM precision score = 96.3826366559%
+SVM recall score = 96.4898595944%
+SVM f1 score = 96.3045194628%
+-----------------------------------------------------------------
+DecisionTreeClassifier(class_weight='balanced', criterion='gini',
+            max_depth=20, max_features='log2', max_leaf_nodes=None,
+            min_impurity_split=1e-07, min_samples_leaf=1,
+            min_samples_split=5, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=251254, splitter='best')
+-----------------------------------------------------------------
+Decision tree accuracy score = 100.0%
+Decision tree precision score = 100.0%
+Decision tree recall score = 100.0%
+Decision tree f1 score = 100.0%
+-----------------------------------------------------------------
+MLPClassifier(activation='logistic', alpha=0.0001, batch_size='auto',
+       beta_1=0.9, beta_2=0.999, early_stopping=False, epsilon=1e-08,
+       hidden_layer_sizes=(20, 20, 20), learning_rate='constant',
+       learning_rate_init=0.001, max_iter=200, momentum=0.9,
+       nesterovs_momentum=True, power_t=0.5, random_state=False,
+       shuffle=True, solver='adam', tol=0.0001, validation_fraction=0.1,
+       verbose=False, warm_start=False)
+--------------------VALIDATION--------------------------
+Neural network accuracy score = 100.0%
+Neural network precision score = 100.0%
+Neural network recall score = 100.0%
+Neural network f1 score = 100.0%
+--------------------TESTING--------------------------
+Neural network accuracy score = 100.0%
+Neural network precision score = 100.0%
+Neural network recall score = 100.0%
+Neural network f1 score = 100.0%
+--------------------VALIDATION--------------------------
+Voting system accuracy score = 100.0%
+Voting system precision score = 100.0%
+Voting system recall score = 100.0%
+Voting system f1 score = 100.0%
+--------------------TESTING--------------------------
+Voting system accuracy score = 100.0%
+Voting system precision score = 100.0%
+Voting system recall score = 100.0%
+Voting system f1 score = 100.0%
+-----------------------------------------------------------------
+
+Process finished with exit code 0
